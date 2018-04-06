@@ -58,6 +58,7 @@ pub mod os;
 pub mod os_str;
 pub mod path;
 pub mod pipe;
+#[cfg(not(target_os = "sel4"))]
 pub mod process;
 pub mod rand;
 pub mod rwlock;

@@ -48,6 +48,10 @@ cfg_if! {
     } else if #[cfg(target_arch = "wasm32")] {
         mod wasm;
         pub use self::wasm::*;
+    } else if #[cfg(target_os = "sel4")] {
+        // for now!
+        mod redox;
+        pub use self::redox::*;
     } else {
         compile_error!("libstd doesn't compile for this platform yet");
     }
@@ -59,7 +63,7 @@ cfg_if! {
 
 #[cfg(dox)]
 cfg_if! {
-    if #[cfg(any(unix, target_os = "redox"))] {
+    if #[cfg(any(unix, target_os = "redox", target_os = "sel4"))] {
         // On unix we'll document what's already available
         pub use self::ext as unix_ext;
     } else if #[cfg(any(target_os = "cloudabi", target_arch = "wasm32"))] {

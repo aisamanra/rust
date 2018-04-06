@@ -46,7 +46,7 @@ pub mod bytestring;
 pub mod process;
 
 cfg_if! {
-    if #[cfg(any(target_os = "cloudabi", target_os = "l4re", target_os = "redox"))] {
+    if #[cfg(any(target_os = "cloudabi", target_os = "l4re", target_os = "redox", target_os = "sel4"))] {
         pub use sys::net;
     } else if #[cfg(all(target_arch = "wasm32", not(target_os = "emscripten")))] {
         pub use sys::net;
@@ -58,6 +58,7 @@ cfg_if! {
 #[cfg(feature = "backtrace")]
 #[cfg(any(all(unix, not(target_os = "emscripten")),
           all(windows, target_env = "gnu"),
+          target_os = "sel4",
           target_os = "redox"))]
 pub mod gnu;
 

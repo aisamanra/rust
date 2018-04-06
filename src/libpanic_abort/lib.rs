@@ -63,6 +63,7 @@ pub unsafe extern fn __rust_start_panic(_data: usize, _vtable: usize) -> u32 {
     }
 
     #[cfg(any(target_os = "redox",
+              target_os = "sel4",
               windows,
               all(target_arch = "wasm32", not(target_os = "emscripten"))))]
     unsafe fn abort() -> ! {

@@ -70,6 +70,7 @@ mod imp;
 #[cfg(any(all(unix, not(target_os = "emscripten")),
           target_os = "cloudabi",
           target_os = "redox",
+          target_os = "sel4",
           all(windows, target_arch = "x86", target_env = "gnu")))]
 #[path = "gcc.rs"]
 mod imp;
